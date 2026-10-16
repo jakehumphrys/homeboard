@@ -7,4 +7,12 @@
         <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\lib\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MudBlazor" Version="9.11.0" />
+    </ItemGroup>
+
 </Project>
