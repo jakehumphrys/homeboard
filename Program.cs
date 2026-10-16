@@ -1,4 +1,5 @@
 using HomeBoard.Components;
+using HomeBoard.Services;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddMudServices();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient<RssService>(x => x.DefaultRequestHeaders.UserAgent.ParseAdd("HomeBoard"));
 
 var app = builder.Build();
 

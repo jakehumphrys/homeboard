@@ -1,0 +1,28 @@
+@using HomeBoard.Models
+<MudCard Style="height:100%">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Title</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent Style="max-height:400px; overflow-y:auto">
+        <MudStack Spacing="2">
+            @foreach (var item in Items)
+            {
+                <div>
+                    <MudLink Href="@item.Url" Target="_blank">@item.Title</MudLink>
+                    @if (!string.IsNullOrWhiteSpace(item.Source))
+                    {
+                        <MudChip T="string" Size="Size.Small" Variant="Variant.Outlined" Color="Color.Primary">@item.Source</MudChip>
+                    }
+                    <MudText Typo="Typo.caption" Color="Color.Secondary">@item.Date.ToString("g")</MudText>
+                </div>
+            }
+        </MudStack>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public List<FeedItem> Items { get; set; } = new();
+}

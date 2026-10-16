@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <PackageReference Include="MudBlazor" Version="9.11.0" />
+      <PackageReference Include="System.ServiceModel.Syndication" Version="10.0.13" />
     </ItemGroup>
 
 </Project>

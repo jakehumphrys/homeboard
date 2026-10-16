@@ -1,7 +1,33 @@
 ﻿@page "/"
+@using HomeBoard.Models
+@using HomeBoard.Services
+@inject RssService RssService
 
-<PageTitle>Home</PageTitle>
+<MudGrid>
+    <MudItem xs="12">
+        <MudAlert Severity="Severity.Info">Next event: Team standup in 20 min</MudAlert>
+    </MudItem>
 
-<h1>Hello, world!</h1>
+    <MudItem xs="12" md="6" lg="4">
+        <FeedCard Title="Calendar" Items="_calendar" />
+    </MudItem>
+    <MudItem xs="12" md="6" lg="4">
+        <FeedCard Title="News Feeds" Items="_news" />
+    </MudItem>
+</MudGrid>
 
-Welcome to your new app.
+@code {
+    private List<FeedItem> _calendar = Sample("Event");
+    private List<FeedItem> _news = new();
+    
+    private static List<FeedItem> Sample(string prefix) =>
+        Enumerable.Range(1, 8)
+            .Select(i => new FeedItem($"{prefix} {i}", "https://example.com", "sample", DateTime.Now.AddHours(-i)))
+            .ToList();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _news = await RssService.GetFeedAsync("https://feeds.bbci.co.uk/news/uk/rss.xml", "BBC");
+    }
+
+}
