@@ -1,4 +1,5 @@
 using HomeBoard.Components;
+using HomeBoard.Models;
 using HomeBoard.Services;
 using MudBlazor.Services;
 
@@ -11,6 +12,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddMudServices();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient<RssService>(x => x.DefaultRequestHeaders.UserAgent.ParseAdd("HomeBoard"));
+
+builder.Services.Configure<List<FeedSource>>(builder.Configuration.GetSection("NewsFeeds"));
 
 var app = builder.Build();
 

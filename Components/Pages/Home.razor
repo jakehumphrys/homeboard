@@ -14,7 +14,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _news = await RssService.GetFeedAsync("https://feeds.bbci.co.uk/news/uk/rss.xml", "BBC");
+        _news = await RssService.GetNewsAsync();
     }
 
 }
